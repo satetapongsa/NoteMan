@@ -1,0 +1,295 @@
+.rich-text-editor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--bg-primary);
+}
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--border-primary);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.toolbar-buttons {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.toolbar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.toolbar-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    border-radius: var(--radius-sm);
+    transition: opacity var(--transition-fast);
+    z-index: -1;
+}
+
+.toolbar-btn:hover {
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.toolbar-btn:hover::after {
+    opacity: 0.1;
+}
+
+.toolbar-btn:active {
+    transform: translateY(0);
+}
+
+.toolbar-separator {
+    width: 1px;
+    height: 24px;
+    background: var(--border-primary);
+    margin: 0 var(--spacing-xs);
+}
+
+/* Save Status */
+.save-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.save-status.saving {
+    color: var(--brand-accent);
+    background: rgba(6, 182, 212, 0.1);
+}
+
+.save-status.saved {
+    color: var(--success);
+    background: rgba(5, 150, 105, 0.1);
+}
+
+.save-status .spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Title */
+.editor-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.editor-title:focus {
+    background: var(--bg-accent);
+}
+
+.editor-title::placeholder {
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+/* Content */
+.editor-content {
+    flex: 1;
+    padding: 0 var(--spacing-2xl) var(--spacing-2xl);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    outline: none;
+    resize: none;
+    font-family: var(--font-primary);
+    transition: all var(--transition-fast);
+}
+
+.editor-content:focus {
+    background: var(--bg-accent);
+}
+
+.editor-content::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Stats */
+.editor-stats {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-2xl);
+    border-top: 1px solid var(--border-primary);
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    flex-wrap: wrap;
+    background: var(--bg-secondary);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Empty State */
+.editor-empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: var(--bg-primary);
+    background-image: var(--gradient-mesh);
+}
+
+.empty-state-content {
+    text-align: center;
+    max-width: 400px;
+    padding: var(--spacing-2xl);
+    animation: slideUp 0.5s ease-out;
+}
+
+.empty-icon {
+    display: inline-flex;
+    padding: var(--spacing-xl);
+    background: var(--gradient-primary);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-inverse);
+    box-shadow: var(--shadow-glow);
+}
+
+.empty-state-content h2 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.empty-state-content p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+/* Content Styling */
+.editor-content h1,
+.editor-content h2,
+.editor-content h3 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.editor-content ul,
+.editor-content ol {
+    margin-left: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.editor-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.editor-content blockquote {
+    border-left: 4px solid var(--brand-primary);
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    color: var(--text-secondary);
+    font-style: italic;
+    background: var(--bg-accent);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.editor-content pre {
+    background: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-md) 0;
+    font-family: 'Courier New', monospace;
+    border: 1px solid var(--border-primary);
+}
+
+.editor-content code {
+    background: var(--bg-secondary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: var(--brand-primary);
+}
+
+.editor-content a {
+    color: var(--brand-primary);
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+}
+
+.editor-content a:hover {
+    color: var(--brand-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .editor-title {
+        font-size: 2rem;
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .editor-content {
+        padding: 0 var(--spacing-md) var(--spacing-lg);
+        font-size: 1rem;
+    }
+
+    .editor-stats {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.75rem;
+    }
+
+    .toolbar-buttons {
+        gap: 4px;
+    }
+
+    .toolbar-btn {
+        width: 32px;
+        height: 32px;
+    }
+}
